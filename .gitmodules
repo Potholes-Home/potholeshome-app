@@ -1,0 +1,10 @@
+[submodule "cppflow"]
+	path = cppflow
+	url = git@github.com:serizba/cppflow.git
+[submodule "boinc"]
+	path = boinc
+	url = git@github.com:BOINC/boinc.git
+[submodule "tensorflow"]
+	branch = r2.6
+	path = tensorflow
+	url = git@github.com:tensorflow/tensorflow.git
