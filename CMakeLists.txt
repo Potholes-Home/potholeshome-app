@@ -12,7 +12,9 @@ set(TENSORFLOW_SOURCE_DIR "" CACHE PATH
   "Directory that contains the TensorFlow project" )
 if(NOT TENSORFLOW_SOURCE_DIR)
   get_filename_component(TENSORFLOW_SOURCE_DIR
-    "${CMAKE_CURRENT_LIST_DIR}/tensorflow" ABSOLUTE)
+    "${CMAKE_CURRENT_LIST_DIR}/tensorflow"
+    ABSOLUTE
+  )
 endif()
 
 add_subdirectory(
@@ -50,10 +52,12 @@ endif()
 
 add_executable(pothole_analyzer
                main.cpp)
+
 target_include_directories(pothole_analyzer PRIVATE
                           ${CMAKE_CURRENT_LIST_DIR}/boinc/api/
                           ${CMAKE_CURRENT_LIST_DIR}/boinc/lib/
                           ${CMAKE_CURRENT_LIST_DIR}/boinc/)
+
 target_link_libraries (pothole_analyzer PRIVATE
                       tensorflow-lite
                       -L${CMAKE_CURRENT_LIST_DIR}/boinc/lib
