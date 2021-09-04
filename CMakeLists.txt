@@ -58,6 +58,7 @@ target_include_directories(pothole_analyzer PRIVATE
                           ${CMAKE_CURRENT_LIST_DIR}/boinc/lib/
                           ${CMAKE_CURRENT_LIST_DIR}/boinc/)
 
+if(NOT MSVC)
 target_link_libraries (pothole_analyzer PRIVATE
                       tensorflow-lite
                       -L${CMAKE_CURRENT_LIST_DIR}/boinc/lib
@@ -72,3 +73,13 @@ target_link_libraries (pothole_analyzer PRIVATE
                       -DBOINC
                       -lboinc_api
                       -lboinc)
+endif()
+if (MSVC)
+target_compile_options(pothole_analyzer PRIVATE /MT)
+target_link_libraries (pothole_analyzer PRIVATE
+                      tensorflow-lite
+                      Threads::Threads
+                      ${CMAKE_CURRENT_LIST_DIR}/boinc_windows/libboinc.lib
+                      ${CMAKE_CURRENT_LIST_DIR}/boinc_windows/libboincapi.lib
+                      )
+endif()
